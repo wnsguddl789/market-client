@@ -1,11 +1,10 @@
-import axios from 'axios';
-
+import { AuthStore } from '../store';
 import { LoginAction } from '../types';
 
 export class LoginViewModel {
-  [x: string]: any;
+  AuthStore: AuthStore;
 
-  constructor(store: any) {
+  constructor(store: AuthStore) {
     this.AuthStore = store;
   }
 

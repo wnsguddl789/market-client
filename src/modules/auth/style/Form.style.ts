@@ -3,13 +3,12 @@ import styled from '@emotion/styled';
 const Form = styled.form`
   display: flex;
   flex: 1;
+  gap: 20px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  & > * {
-    margin-top: 20px;
-  }
+
   button {
     width: 100%;
     border: none;

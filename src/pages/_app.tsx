@@ -1,8 +1,10 @@
 import React from 'react';
-import App from 'next/app';
+import type { AppProps } from 'next/app';
 import 'styles/reset.css';
+
 import { Layout } from 'components';
-const MyApp = ({ Component, pageProps }) => {
+
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <Layout>
       <Component {...pageProps} />

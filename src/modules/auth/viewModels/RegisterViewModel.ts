@@ -1,9 +1,9 @@
 import { RegisterAction } from '../types';
-
+import { AuthStore } from '../store';
 export class RegisterViewModel {
-  [x: string]: any;
+  AuthStore: AuthStore;
 
-  constructor(store: any) {
+  constructor(store: AuthStore) {
     this.AuthStore = store;
   }
 

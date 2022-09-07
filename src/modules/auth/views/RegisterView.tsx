@@ -1,14 +1,17 @@
 import React from 'react';
 import Link from 'next/link';
+
 import { Form, FormItem } from '../style/Form.style';
 
-interface RegisterViewProps {
+import { RegisterAction } from '../types';
+import { UseFormRegister } from 'react-hook-form';
+
+interface Props {
   onSubmit: () => void;
-  register: any;
-  errors: any;
+  register: UseFormRegister<RegisterAction>;
 }
 
-export const RegisterView: React.FunctionComponent<RegisterViewProps> = ({ onSubmit, register, errors }) => (
+export const RegisterView: React.FC<Props> = ({ onSubmit, register }) => (
   <Form onSubmit={onSubmit}>
     <FormItem>
       <label>아이디</label>

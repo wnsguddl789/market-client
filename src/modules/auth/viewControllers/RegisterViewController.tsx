@@ -1,18 +1,15 @@
 import React from 'react';
 import { RegisterView } from '../views';
+import { RegisterViewModel } from '../viewModels';
 import { RegisterAction } from '../types';
 import { useForm } from 'react-hook-form';
 
-interface RegisterViewControllerProps {
-  viewModel?: any;
+interface Props {
+  viewModel: RegisterViewModel;
 }
 
-export const RegisterViewController: React.FunctionComponent<RegisterViewControllerProps> = ({ viewModel }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<RegisterAction>({});
+export const RegisterViewController: React.FC<Props> = ({ viewModel }) => {
+  const { register, handleSubmit } = useForm<RegisterAction>({});
 
   const onSubmit = handleSubmit(async (value) => {
     const { data, status } = await viewModel.handleRegisterAction(value);
@@ -20,5 +17,5 @@ export const RegisterViewController: React.FunctionComponent<RegisterViewControl
       alert(data?.message);
     }
   });
-  return <RegisterView onSubmit={onSubmit} register={register} errors={errors} />;
+  return <RegisterView onSubmit={onSubmit} register={register} />;
 };

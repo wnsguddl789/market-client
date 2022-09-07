@@ -1,18 +1,15 @@
 import React from 'react';
 import { LoginView } from '../views';
+import { LoginViewModel } from '../viewModels';
 import { LoginAction } from '../types';
-import { useForm, Resolver } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
-interface LoginViewControllerProps {
-  viewModel?: any;
+interface Props {
+  viewModel: LoginViewModel;
 }
 
-export const LoginViewController: React.FunctionComponent<LoginViewControllerProps> = ({ viewModel }) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginAction>({});
+export const LoginViewController: React.FC<Props> = ({ viewModel }) => {
+  const { register, handleSubmit } = useForm<LoginAction>({});
 
   const validateValues = (value: LoginAction) => {
     const { length } = Object.values(value).filter((el) => el.replace(' ', '') !== '');
@@ -20,10 +17,15 @@ export const LoginViewController: React.FunctionComponent<LoginViewControllerPro
   };
 
   const onSubmit = handleSubmit(async (value: LoginAction) => {
-    if (validateValues(value)) {
-      const result = await viewModel.handleLoginAction(value);
-      console.log(result);
+    try {
+      if (validateValues(value)) {
+        const { data, status } = await viewModel.handleLoginAction(value);
+      } else {
+        throw new Error('로그인 에러입니다.');
+      }
+    } catch (error) {
+      console.log(error);
     }
   });
-  return <LoginView onSubmit={onSubmit} register={register} errors={errors} />;
+  return <LoginView onSubmit={onSubmit} register={register} />;
 };
