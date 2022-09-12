@@ -9,7 +9,7 @@ interface Props {
   post: string;
 }
 
-export const PostDetailView: React.FunctionComponent = observer(({ post }: Props) => (
+export const PostDetailView = observer(({ post }: Props) => (
   <Style.Container>
     <div className="markdown-body">
       <MarkDownView post={post} />

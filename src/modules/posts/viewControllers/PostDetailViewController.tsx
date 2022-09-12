@@ -9,6 +9,6 @@ interface Props {
   post: string;
 }
 
-export const PostDetailViewController = observer(({ viewModel, post }: Props) => {
+export const PostDetailViewController: React.FunctionComponent<Props> = observer(({ viewModel, post }) => {
   return <PostDetailView post={post} />;
 });
