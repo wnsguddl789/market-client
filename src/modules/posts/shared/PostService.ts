@@ -1,6 +1,6 @@
-import { AxiosInstance } from 'axios';
+import type { AxiosInstance } from 'axios';
 
-import { CREATE_ITEM, fetchItems } from './PostListPageQuery';
+import { fetchItems } from './PostListPageQuery';
 
 export class ItemService {
   axiosInstance: AxiosInstance;
