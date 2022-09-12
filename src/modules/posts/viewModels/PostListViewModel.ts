@@ -1,5 +1,5 @@
 import { PostStore } from '../models';
-import { CreateItemDto } from '../types';
+
 export class PostListViewModel {
   postStore: PostStore;
   constructor(store: PostStore) {
@@ -7,8 +7,5 @@ export class PostListViewModel {
   }
   getItems() {
     return this.postStore.getItems();
-  }
-  createItem(value: CreateItemDto) {
-    return this.postStore.createItem(value);
   }
 }

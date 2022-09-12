@@ -1,4 +1,4 @@
-import { postType, CreateItemDto } from '../types';
+import { postType } from '../types';
 import { observable, action, makeAutoObservable, IObservableArray } from 'mobx';
 import { ItemService } from '../shared';
 
@@ -19,7 +19,6 @@ export class PostStore {
     makeAutoObservable(this, {
       posts: observable,
       post: observable,
-      createItem: action,
     });
   }
 
@@ -37,9 +36,5 @@ export class PostStore {
 
   getItem() {
     return this.post;
-  }
-
-  async createItem(value: CreateItemDto) {
-    await this.service.createItem(value);
   }
 }
