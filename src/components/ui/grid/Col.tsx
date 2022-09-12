@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { useContext } from 'react';
 
 interface Props {
-  children: React.ReactNode | JSX.Element | string;
+  children: React.ReactNode | JSX.Element | string | any;
   span?: 24 | 12 | 8 | 6 | 4 | 3 | 2;
 }
 

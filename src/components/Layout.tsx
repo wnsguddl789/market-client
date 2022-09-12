@@ -1,32 +1,41 @@
 import React from 'react';
 import { LayoutContainer, HeaderContainer, Header, Main } from './styles';
 import { hasChildren, routeType } from 'types';
-import { commonRoutes, conditionRoutes } from 'constant';
-import Link from 'next/link';
+import { commonRoutes as ROUTES } from 'constant';
+
+import { Link } from './Link';
 import { useRouter } from 'next/router';
+import { useTheme } from '@emotion/react';
 
 export const Layout: React.FunctionComponent<hasChildren> = ({ children }) => {
-  const menu = [...commonRoutes, ...conditionRoutes];
   const { asPath } = useRouter();
+  const {
+    size,
+    color: { primaryColor },
+  } = useTheme();
+
+  const activePathStyle = (href: routeType['href']) => ({
+    color: asPath === href && primaryColor,
+    fontWeight: asPath === href && 700,
+  });
   return (
     <LayoutContainer>
       <HeaderContainer>
-        <Header>
+        <Header size={size}>
           <section className="logo-section">
-            <h1></h1>
+            <Link href="/">DEV:BBAK</Link>
           </section>
           <ul className="menu-section">
-            {menu.map(({ content, href }: routeType, index: number) => (
-              <li key={index}>
-                <Link href={href} passHref>
-                  <span style={{ color: asPath === href && '#f67600', fontWeight: asPath === href && 700 }}>{content}</span>
-                </Link>
-              </li>
+            {ROUTES.map(({ content, href }) => (
+              <Link key={href} href={href}>
+                <span style={activePathStyle(href)}>{content}</span>
+              </Link>
             ))}
           </ul>
         </Header>
       </HeaderContainer>
-      <Main>{children}</Main>
+
+      <Main size={size}>{children}</Main>
     </LayoutContainer>
   );
 };

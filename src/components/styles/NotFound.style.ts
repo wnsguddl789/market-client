@@ -2,11 +2,11 @@ import styled from '@emotion/styled';
 
 const NotFoundContainer = styled.section`
   display: flex;
-  flex: 1;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
+  min-height: calc(100vh - 76px);
   p.location-info {
     font-weight: 700;
     color: #f67600;

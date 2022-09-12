@@ -7,7 +7,6 @@ interface hasChildren {
 interface routeType {
   content: string;
   href: string;
-  requiredLoggedIn: boolean;
 }
 
 export type { hasChildren, routeType };

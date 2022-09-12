@@ -1,74 +1,57 @@
 import styled from '@emotion/styled';
 
+import { themeType } from 'utils/theme/type';
+
 const LayoutContainer = styled.div``;
 const HeaderContainer = styled.div`
   display: flex;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
 `;
-const Header = styled.header`
+const Header = styled.header<{ size: themeType['size'] }>`
   position: sticky;
   top: 0;
-  min-width: 80%;
-  @media (max-width: 450px) {
-    width: 100%;
-  }
-  margin: 0 auto;
+
+  max-width: 100%;
+  width: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: 1rem;
+
+  @media (${({ size }) => size.mobile}) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
   .logo-section {
     display: flex;
     justify-content: flex-start;
-    @media (max-width: 450px) {
-      justify-content: center;
-    }
-    width: 20%;
-    @media (min-width: 610px) {
-      width: 40%;
-    }
-    h1 {
-      display: flex;
-      justify-content: center;
-    }
-    h1:after {
-      content: '캐럿마켓';
+    a {
       font-weight: 700;
       font-size: 32px;
-      text-transform: uppercase;
-      letter-spacing: -3px;
-      float: left;
       color: #f67600;
-      @media (max-width: 610px) {
-        display: none;
-      }
-    }
-    h1:before {
-      content: '';
-      background-image: url('/images/Logo.png');
-      background-size: 32px 32px;
-      width: 32px;
-      height: 32px;
-      position: relative;
-      top: -5px;
+      font-family: 'Fraunces', serif;
+      font-family: 'Montserrat', sans-serif;
+      font-family: 'Roboto Mono', monospace;
     }
   }
+
   .menu-section {
-    width: 100%;
     display: flex;
     list-style: none;
     justify-content: flex-end;
-    @media (max-width: 450px) {
-      justify-content: center;
+
+    @media (${({ size }) => size.mobile}) {
+      width: 100%;
+      gap: 1rem;
+      flex-direction: column;
+      align-items: center;
     }
-    li > span {
+    a > span {
       cursor: pointer;
       color: black;
       font-size: 16px;
-      @media (max-width: 500px) {
-        font-size: 15px;
-      }
       text-decoration: none;
       margin-right: 10px;
 
@@ -79,12 +62,33 @@ const Header = styled.header`
   }
 `;
 
-const Main = styled.main`
-  display: flex;
-  flex: 1;
-  padding: 10px;
-  font-size: 16px;
-  min-height: calc(100vh - 92px);
+const Main = styled.main<{ size: themeType['size'] }>`
+  @media (${({ size }) => size.mobile}) {
+    ${({ size }) => size.mobile};
+    width: 100%;
+  }
+  @media (${({ size }) => size.tabletS}) {
+    ${({ size }) => size.tabletS};
+    width: 100%;
+  }
+  @media (${({ size }) => size.tabletM}) {
+    ${({ size }) => size.tabletM};
+    width: 80%;
+  }
+  @media (${({ size }) => size.tabletL}) {
+    ${({ size }) => size.tabletL};
+    width: 80%;
+  }
+  @media (${({ size }) => size.laptop}) {
+    ${({ size }) => size.laptop};
+    width: 80%;
+  }
+  @media (${({ size }) => size.desktop}) {
+    ${({ size }) => size.desktop};
+    width: 50%;
+  }
+  margin: 0 auto;
+  min-height: calc(100vh - 76px);
 `;
 
 export { LayoutContainer, HeaderContainer, Header, Main };
