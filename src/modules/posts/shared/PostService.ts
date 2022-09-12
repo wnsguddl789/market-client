@@ -1,12 +1,14 @@
+import type { AxiosInstance } from 'axios';
+
 import { fetchItems } from './PostListPageQuery';
 
 export class ItemService {
-  axiosInstance: any;
-  constructor(axiosInstance: any) {
+  axiosInstance: AxiosInstance;
+  constructor(axiosInstance: AxiosInstance) {
     this.axiosInstance = axiosInstance;
   }
 
-  static createInstance(axiosInstance: any) {
+  static createInstance(axiosInstance: AxiosInstance) {
     return new ItemService(axiosInstance);
   }
 
